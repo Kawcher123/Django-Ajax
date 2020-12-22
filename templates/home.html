@@ -17,6 +17,8 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     {{form.as_p}}
+
+                    <input type="button" class="btn btn-success" id="btnsave" value="save" />
             
                 </form>
             </div>
@@ -34,7 +36,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         {% for stud in stud %}
 
                         <tr>
@@ -43,8 +45,8 @@
                             <td>{{stud.email}}</td>
                             <td>{{stud.password}}</td>
                             <td>
-                                <input type="button" data-sid="{{stud.id}}" class="btn btn-warning btn-sm" value="Edit">
-                                <input type="button" data-sid="{{stud.id}}" class="btn btn-danger btn-sm" value="Delete">
+                                <input type="button" data-sid="{{stud.id}}" class="btn btn-edit btn-warning btn-sm" value="Edit">
+                                <input type="button" data-sid="{{stud.id}}" class="btn btn-del btn-danger btn-sm" value="Delete">
                             </td>
                         </tr>
 
@@ -60,5 +62,7 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    {% include 'ajax.html' %}
 </body>
 </html>
