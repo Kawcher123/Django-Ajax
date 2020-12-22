@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <title>Django Ajax Test</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center alert alert-danger">Django Ajax</h2>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 class="text-center alert alert-info">Add/Update Student</h4>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+            
+                </form>
+            </div>
+
+            <div class="col-sm-7">
+                <h4 class="text-center alert alert-info"> Show Student Information</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stud in stud %}
+
+                        <tr>
+                            <td>{{stud.id}}</td>
+                            <td>{{stud.name}}</td>
+                            <td>{{stud.email}}</td>
+                            <td>{{stud.password}}</td>
+                            <td>
+                                <input type="button" data-sid="{{stud.id}}" class="btn btn-warning btn-sm" value="Edit">
+                                <input type="button" data-sid="{{stud.id}}" class="btn btn-danger btn-sm" value="Delete">
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+  
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>
